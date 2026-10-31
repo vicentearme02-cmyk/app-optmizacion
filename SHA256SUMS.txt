@@ -1,0 +1,2 @@
+ba3cd5040ae91c6130e57d67582602b520ca69b25307a29641e2dbcbfaae534c  Maximo-FPS-Windows-0.1.0.zip
+a240a2d8b700516fbf7e49be61fff8513f4afc5e04e2e228d50253a5cf9b6c5e  Maximo-FPS-Codigo-0.1.0.zip
