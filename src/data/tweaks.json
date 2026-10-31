@@ -1,0 +1,1051 @@
+[
+  {
+    "id": "game-mode",
+    "title": "Modo Juego de Windows",
+    "description": "Activa el modo de Windows que favorece la sesión de juego y reduce algunas interrupciones.",
+    "category": "gaming",
+    "impact": "recommended",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": false,
+    "benefit": "Prioridad para tu sesión de juego.",
+    "caveat": "Windows 10/11. El resultado depende del juego y de los procesos abiertos; no fija una ganancia de FPS.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\GameBar",
+      "name": "AutoGameModeEnabled",
+      "value": 1,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "background-recording",
+    "title": "Desactivar grabación en segundo plano",
+    "description": "Evita que Capturas conserve continuamente los últimos momentos de la partida.",
+    "category": "gaming",
+    "impact": "recommended",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": false,
+    "benefit": "Menos trabajo de captura durante la partida.",
+    "caveat": "Pierdes la función de guardar lo que acaba de ocurrir. La grabación manual puede seguir disponible.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\GameDVR",
+      "name": "HistoricalCaptureEnabled",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "game-capture",
+    "title": "Desactivar capturas de Game Bar",
+    "description": "Desactiva la captura integrada de Windows cuando utilizas otra herramienta para grabar.",
+    "category": "gaming",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Evita el uso de la captura integrada.",
+    "caveat": "No podrás grabar con Game Bar mientras esté aplicado. No desactiva OBS ni herramientas de AMD.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\GameDVR",
+      "name": "AppCaptureEnabled",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "gamepad-overlay",
+    "title": "Evitar abrir Game Bar con el mando",
+    "description": "Impide que el botón Xbox del mando abra la superposición de Game Bar.",
+    "category": "gaming",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": false,
+    "benefit": "Menos aperturas accidentales de la superposición.",
+    "caveat": "El mando continúa funcionando. La combinación de teclado de Game Bar no se modifica.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\GameBar",
+      "name": "UseNexusForGameBarEnabled",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "mouse-acceleration",
+    "title": "Movimiento de ratón sin aceleración",
+    "description": "Desactiva la precisión mejorada del puntero de Windows para obtener un desplazamiento uniforme.",
+    "category": "gaming",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Respuesta del puntero más predecible.",
+    "caveat": "Cambia la sensación del ratón en el escritorio. Los juegos con entrada de ratón directa pueden ignorar este ajuste.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Control Panel\\Mouse",
+      "name": "MouseSpeed",
+      "value": "0",
+      "type": "String"
+    }
+  },
+  {
+    "id": "high-performance-plan",
+    "title": "Plan de alto rendimiento",
+    "description": "Selecciona el plan de energía Alto rendimiento si está disponible en este equipo.",
+    "category": "gaming",
+    "impact": "optional",
+    "risk": "medium",
+    "requiresAdmin": true,
+    "requiresRestart": false,
+    "benefit": "Menos ahorro energético durante la sesión.",
+    "caveat": "Puede aumentar consumo, temperatura y ruido. Algunos equipos Modern Standby no ofrecen este plan. No aumenta las frecuencias máximas del hardware.",
+    "operation": {
+      "kind": "power",
+      "scheme": "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c"
+    }
+  },
+  {
+    "id": "visual-transparency",
+    "title": "Reducir transparencias",
+    "description": "Usa superficies opacas en Inicio, la barra de tareas y otras partes de Windows.",
+    "category": "visual",
+    "impact": "recommended",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Interfaz más sobria y menos efectos de composición.",
+    "caveat": "Solo afecta a la interfaz de Windows; no cambia los gráficos de los juegos. Puede requerir reiniciar el Explorador o cerrar sesión para reflejar el cambio.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+      "name": "EnableTransparency",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "window-animation",
+    "title": "Ventanas sin animación",
+    "description": "Elimina las animaciones de minimizar y maximizar ventanas.",
+    "category": "visual",
+    "impact": "recommended",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Transiciones de ventanas más directas.",
+    "caveat": "Requiere cerrar sesión o reiniciar. Las animaciones internas de cada aplicación no se modifican.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Control Panel\\Desktop\\WindowMetrics",
+      "name": "MinAnimate",
+      "value": "0",
+      "type": "String"
+    }
+  },
+  {
+    "id": "taskbar-animation",
+    "title": "Barra de tareas sin animaciones",
+    "description": "Reduce los efectos animados de botones y miniaturas de la barra de tareas.",
+    "category": "visual",
+    "impact": "recommended",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Menos efectos visuales en el escritorio.",
+    "caveat": "Reinicia el Explorador o la sesión. Algunos efectos de Windows 11 dependen de su versión.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "TaskbarAnimations",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "selection-transparency",
+    "title": "Selección de archivos más simple",
+    "description": "Desactiva el rectángulo de selección translúcido del Explorador.",
+    "category": "visual",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Selección de archivos con menos efectos.",
+    "caveat": "El cambio es visual; no garantiza una mejora en juegos.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "ListviewAlphaSelect",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "desktop-label-shadow",
+    "title": "Quitar sombras de los iconos",
+    "description": "Desactiva las sombras bajo el texto de los iconos del escritorio.",
+    "category": "visual",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Representación más simple del escritorio.",
+    "caveat": "La legibilidad depende del fondo de pantalla. Requiere reiniciar el Explorador o la sesión.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "ListviewShadow",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "explorer-icons",
+    "title": "Mostrar iconos en lugar de miniaturas",
+    "description": "Evita generar vistas en miniatura al explorar carpetas con fotos y vídeos.",
+    "category": "visual",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Menos trabajo al abrir carpetas multimedia.",
+    "caveat": "Verás iconos de archivo en lugar de sus previsualizaciones.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "IconsOnly",
+      "value": 1,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "preview-handlers",
+    "title": "Desactivar controladores de vista previa",
+    "description": "Evita que el panel de vista previa cargue controladores de documentos.",
+    "category": "visual",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Menos componentes de vista previa al explorar archivos.",
+    "caveat": "El panel de vista previa dejará de mostrar el contenido de muchos documentos.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "ShowPreviewHandlers",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "menu-delay",
+    "title": "Menús del escritorio más ágiles",
+    "description": "Establece en 100 ms la espera antes de desplegar submenús clásicos de Windows.",
+    "category": "visual",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Espera corta y uniforme en menús clásicos.",
+    "caveat": "No reduce la latencia de los juegos. Una espera corta puede abrir submenús por accidente.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Control Panel\\Desktop",
+      "name": "MenuShowDelay",
+      "value": "100",
+      "type": "String"
+    }
+  },
+  {
+    "id": "file-tooltips",
+    "title": "Ocultar información emergente de archivos",
+    "description": "Desactiva los cuadros de información al dejar el ratón sobre un archivo.",
+    "category": "visual",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Menos elementos emergentes al navegar.",
+    "caveat": "La información del archivo sigue disponible en Propiedades.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "ShowInfoTip",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "advertising-id",
+    "title": "Desactivar identificador publicitario",
+    "description": "Impide que las aplicaciones usen el identificador publicitario del usuario.",
+    "category": "privacy",
+    "impact": "recommended",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": false,
+    "benefit": "Menos personalización publicitaria entre aplicaciones.",
+    "caveat": "No bloquea anuncios ni sustituye los ajustes de privacidad de cada aplicación.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\AdvertisingInfo",
+      "name": "Enabled",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "tailored-experiences",
+    "title": "Desactivar experiencias personalizadas",
+    "description": "Desactiva sugerencias personalizadas basadas en datos de diagnóstico.",
+    "category": "privacy",
+    "impact": "recommended",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": false,
+    "benefit": "Menos recomendaciones basadas en diagnósticos.",
+    "caveat": "No desactiva todos los datos de diagnóstico de Windows.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Privacy",
+      "name": "TailoredExperiencesWithDiagnosticDataEnabled",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "feedback-prompts",
+    "title": "Reducir solicitudes de comentarios",
+    "description": "Establece en cero las solicitudes periódicas de opinión del usuario.",
+    "category": "privacy",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": false,
+    "benefit": "Menos interrupciones solicitando opiniones.",
+    "caveat": "Las ediciones administradas o compilaciones recientes pueden gestionar esta preferencia mediante políticas.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Siuf\\Rules",
+      "name": "NumberOfSIUFInPeriod",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "start-app-suggestions",
+    "title": "Ocultar aplicaciones sugeridas en Inicio",
+    "description": "Desactiva las sugerencias del panel Inicio en las versiones de Windows que usan esta preferencia.",
+    "category": "privacy",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": false,
+    "benefit": "Menos promociones al abrir Inicio.",
+    "caveat": "Principalmente Windows 10. La implementación de Inicio de Windows 11 puede ignorarlo.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "name": "SystemPaneSuggestionsEnabled",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "windows-tips",
+    "title": "Desactivar consejos de Windows",
+    "description": "Desactiva los consejos y sugerencias que Windows muestra durante el uso del equipo.",
+    "category": "privacy",
+    "impact": "recommended",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": false,
+    "benefit": "Menos avisos y recomendaciones de uso.",
+    "caveat": "No oculta notificaciones de seguridad ni mensajes importantes de las aplicaciones.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "name": "SubscribedContent-338389Enabled",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "settings-suggestions",
+    "title": "Reducir sugerencias en Configuración",
+    "description": "Desactiva una de las fuentes de contenido sugerido en la aplicación Configuración.",
+    "category": "privacy",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": false,
+    "benefit": "Menos recomendaciones de contenido.",
+    "caveat": "La fuente depende de la compilación de Windows; otras fuentes de recomendaciones pueden seguir activas.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "name": "SubscribedContent-353694Enabled",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "silent-promoted-apps",
+    "title": "Evitar aplicaciones promocionadas",
+    "description": "Desactiva la instalación silenciosa de aplicaciones sugeridas por el contenido de Windows.",
+    "category": "cleanup",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": false,
+    "benefit": "Evita parte del contenido promocional nuevo.",
+    "caveat": "Principalmente Windows 10. No desinstala aplicaciones existentes ni bloquea instalaciones que tú solicites.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "name": "SilentInstalledAppsEnabled",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "lockscreen-spotlight",
+    "title": "Desactivar imágenes de Spotlight",
+    "description": "Desactiva la rotación de contenido de Windows Spotlight en la pantalla de bloqueo.",
+    "category": "network",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Menos descargas de fondos y contenido de bloqueo.",
+    "caveat": "La pantalla de bloqueo utilizará una imagen fija. No modifica el fondo del escritorio.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "name": "RotatingLockScreenEnabled",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "lockscreen-tips",
+    "title": "Ocultar consejos en el bloqueo",
+    "description": "Desactiva las superposiciones de datos curiosos y consejos en la pantalla de bloqueo.",
+    "category": "privacy",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Pantalla de bloqueo más limpia.",
+    "caveat": "En algunas versiones esta preferencia solo se usa junto con Spotlight.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "name": "RotatingLockScreenOverlayEnabled",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "welcome-experience",
+    "title": "Desactivar bienvenida tras actualizaciones",
+    "description": "Desactiva la experiencia de bienvenida que presenta novedades de Windows.",
+    "category": "privacy",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": false,
+    "benefit": "Menos pantallas de bienvenida.",
+    "caveat": "No impide instalar actualizaciones ni oculta los reinicios necesarios.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "name": "SubscribedContent-310093Enabled",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "setup-reminders",
+    "title": "Ocultar recordatorios de configuración",
+    "description": "Desactiva recordatorios para terminar de configurar servicios y experiencias opcionales.",
+    "category": "privacy",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": false,
+    "benefit": "Menos invitaciones a completar servicios opcionales.",
+    "caveat": "Puedes seguir configurando estos servicios manualmente desde Configuración.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\UserProfileEngagement",
+      "name": "ScoobeSystemSettingEnabled",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "search-highlights",
+    "title": "Desactivar destacados de búsqueda",
+    "description": "Oculta los destacados y contenido dinámico del cuadro de búsqueda de Windows.",
+    "category": "privacy",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Búsqueda con menos contenido promocional.",
+    "caveat": "Las políticas de empresa pueden controlar esta preferencia; no desactiva la búsqueda local.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\SearchSettings",
+      "name": "IsDynamicSearchBoxEnabled",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "explorer-search-history",
+    "title": "No sugerir búsquedas recientes",
+    "description": "Evita sugerir consultas recientes en el cuadro de búsqueda del Explorador.",
+    "category": "privacy",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Menos historial visible al buscar archivos.",
+    "caveat": "No elimina los archivos ni constituye un bloqueo general de las búsquedas web.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Policies\\Microsoft\\Windows\\Explorer",
+      "name": "DisableSearchBoxSuggestions",
+      "value": 1,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "activity-feed",
+    "title": "Desactivar historial de actividades",
+    "description": "Desactiva la fuente de actividad utilizada por la cronología de Windows.",
+    "category": "privacy",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": true,
+    "requiresRestart": true,
+    "benefit": "Menos historial de actividad del sistema.",
+    "caveat": "La cronología pertenece principalmente a Windows 10. Windows 11 ha retirado parte de estas funciones.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKLM",
+      "path": "Software\\Policies\\Microsoft\\Windows\\System",
+      "name": "EnableActivityFeed",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "file-extensions",
+    "title": "Mostrar extensiones de archivo",
+    "description": "Muestra el tipo real de los archivos para identificar ejecutables y documentos.",
+    "category": "system",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Archivos más fáciles de reconocer.",
+    "caveat": "Mejora la claridad del Explorador; no cambia el rendimiento de los juegos.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "HideFileExt",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "explorer-this-pc",
+    "title": "Abrir el Explorador en Este equipo",
+    "description": "Usa Este equipo como página inicial del Explorador en lugar de Inicio o Acceso rápido.",
+    "category": "system",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Acceso directo a tus unidades.",
+    "caveat": "Solo cambia la página de apertura. Las carpetas fijadas siguen disponibles.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "LaunchTo",
+      "value": 1,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "recent-files",
+    "title": "Ocultar archivos recientes",
+    "description": "Evita mostrar archivos recientes en Inicio o Acceso rápido del Explorador.",
+    "category": "privacy",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Menos actividad personal visible.",
+    "caveat": "No borra archivos. Otras aplicaciones pueden mantener sus propias listas de documentos recientes.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer",
+      "name": "ShowRecent",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "frequent-folders",
+    "title": "Ocultar carpetas frecuentes",
+    "description": "Evita mostrar automáticamente las carpetas de uso frecuente en el Explorador.",
+    "category": "privacy",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Vista de Inicio más controlada.",
+    "caveat": "Las carpetas que hayas fijado manualmente permanecen disponibles.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer",
+      "name": "ShowFrequent",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "recent-documents",
+    "title": "Desactivar listas de documentos recientes",
+    "description": "Deja de mostrar elementos abiertos recientemente en Inicio y listas de acceso rápido.",
+    "category": "privacy",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Menos historial de documentos en accesos rápidos.",
+    "caveat": "Puede quitar recomendaciones útiles y elementos recientes de las listas de salto.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "Start_TrackDocs",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "app-launch-tracking",
+    "title": "Desactivar seguimiento de aplicaciones",
+    "description": "Desactiva el seguimiento usado para mostrar las aplicaciones más utilizadas.",
+    "category": "privacy",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Menos historial de uso para personalizar Inicio.",
+    "caveat": "Las sugerencias de aplicaciones frecuentes serán menos personalizadas.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "Start_TrackProgs",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "hide-empty-drives",
+    "title": "Ocultar unidades vacías",
+    "description": "Oculta lectores de tarjetas y otras unidades sin medios en el Explorador.",
+    "category": "visual",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Lista de unidades más clara.",
+    "caveat": "Las unidades con medios seguirán apareciendo. No apaga discos ni cambia sus controladores.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "HideDrivesWithNoMedia",
+      "value": 1,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "explorer-isolation",
+    "title": "Aislar ventanas del Explorador",
+    "description": "Ejecuta las ventanas del Explorador en un proceso separado cuando Windows lo admite.",
+    "category": "system",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Mayor aislamiento ante fallos del Explorador.",
+    "caveat": "Puede consumir algo más de memoria. No es una optimización de FPS y su efecto varía según la versión.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "SeparateProcess",
+      "value": 1,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "widgets-button",
+    "title": "Ocultar botón de Widgets",
+    "description": "Retira el acceso a Widgets de la barra de tareas de Windows 11.",
+    "category": "cleanup",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Barra de tareas con menos elementos.",
+    "caveat": "Solo oculta el acceso. No desinstala Widgets ni garantiza que sus procesos de fondo se detengan.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "TaskbarDa",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "chat-button",
+    "title": "Ocultar Chat en la barra de tareas",
+    "description": "Oculta el acceso a Chat de las primeras versiones de Windows 11.",
+    "category": "cleanup",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Barra de tareas más despejada.",
+    "caveat": "Solo Windows 11 con Chat integrado. En versiones recientes puede no tener efecto; no desinstala Teams.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "TaskbarMn",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "task-view-button",
+    "title": "Ocultar botón Vista de tareas",
+    "description": "Retira el botón de Vista de tareas de la barra de Windows.",
+    "category": "visual",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Más espacio en la barra de tareas.",
+    "caveat": "La función sigue disponible con Win + Tab. Este ajuste es de interfaz, no de FPS.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "ShowTaskViewButton",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "search-box",
+    "title": "Ocultar cuadro de búsqueda",
+    "description": "Oculta el cuadro o icono de búsqueda en la barra de tareas.",
+    "category": "cleanup",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Más espacio y menos elementos visibles.",
+    "caveat": "Puedes buscar desde Inicio. No desactiva el indexador ni el proceso de búsqueda.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Search",
+      "name": "SearchboxTaskbarMode",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "news-interests",
+    "title": "Ocultar Noticias e intereses",
+    "description": "Oculta el acceso a Noticias e intereses de la barra de tareas de Windows 10.",
+    "category": "cleanup",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Menos contenido visible en la barra de tareas.",
+    "caveat": "Solo Windows 10 con esta función instalada. No garantiza detener todos los procesos del proveedor.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Feeds",
+      "name": "ShellFeedsTaskbarViewMode",
+      "value": 2,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "sync-provider-suggestions",
+    "title": "Ocultar promociones del Explorador",
+    "description": "Oculta avisos promocionales de proveedores de sincronización en el Explorador.",
+    "category": "privacy",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": false,
+    "requiresRestart": true,
+    "benefit": "Menos sugerencias de servicios en tus carpetas.",
+    "caveat": "No desactiva OneDrive ni cambia la sincronización de tus archivos.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "ShowSyncProviderNotifications",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "delivery-sharing",
+    "title": "Desactivar intercambio de actualizaciones",
+    "description": "Configura Optimización de distribución para descargar por HTTP sin intercambiar archivos con otros PC.",
+    "category": "network",
+    "impact": "optional",
+    "risk": "medium",
+    "requiresAdmin": true,
+    "requiresRestart": true,
+    "benefit": "Evita el tráfico entre equipos de esta función.",
+    "caveat": "Windows Update continúa funcionando. Puede aumentar las descargas desde Internet en redes con varios PC.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKLM",
+      "path": "Software\\Policies\\Microsoft\\Windows\\DeliveryOptimization",
+      "name": "DODownloadMode",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "online-settings-tips",
+    "title": "Desactivar consejos en línea",
+    "description": "Evita que Configuración obtenga consejos y ayuda en línea mediante esta política.",
+    "category": "network",
+    "impact": "optional",
+    "risk": "low",
+    "requiresAdmin": true,
+    "requiresRestart": true,
+    "benefit": "Menos contenido en línea dentro de Configuración.",
+    "caveat": "Disponible en las ediciones que admiten esta política; no bloquea el acceso a la documentación desde el navegador.",
+    "operation": {
+      "kind": "registry",
+      "hive": "HKLM",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
+      "name": "AllowOnlineTips",
+      "value": 0,
+      "type": "DWord"
+    }
+  },
+  {
+    "id": "service-search",
+    "title": "Pausar indexación de Windows",
+    "description": "Deshabilita el inicio del servicio que mantiene el índice de búsqueda de archivos.",
+    "category": "system",
+    "impact": "advanced",
+    "risk": "medium",
+    "requiresAdmin": true,
+    "requiresRestart": true,
+    "benefit": "Menos indexación en segundo plano.",
+    "caveat": "La búsqueda de archivos y de Outlook puede ser más lenta o limitada. Recomendado solo si no dependes del índice. Solo cambia el tipo de inicio; el servicio actual no se detiene. El efecto se evalúa después de reiniciar. Si no está instalado, el ajuste no se aplica.",
+    "operation": {
+      "kind": "service",
+      "name": "WSearch",
+      "startType": "Disabled"
+    }
+  },
+  {
+    "id": "service-diagnostics",
+    "title": "Limitar servicio de diagnóstico",
+    "description": "Deshabilita el inicio de Experiencias del usuario y telemetría asociadas.",
+    "category": "privacy",
+    "impact": "advanced",
+    "risk": "medium",
+    "requiresAdmin": true,
+    "requiresRestart": true,
+    "benefit": "Reduce la actividad de este servicio de diagnóstico.",
+    "caveat": "No elimina toda la telemetría del sistema. Puede limitar diagnósticos y experiencias conectadas. Solo cambia el tipo de inicio; el servicio actual no se detiene. El efecto se evalúa después de reiniciar. Si no está instalado, el ajuste no se aplica.",
+    "operation": {
+      "kind": "service",
+      "name": "DiagTrack",
+      "startType": "Disabled"
+    }
+  },
+  {
+    "id": "service-maps",
+    "title": "Desactivar mapas descargados",
+    "description": "Deshabilita el servicio que gestiona mapas descargados para aplicaciones de Windows.",
+    "category": "network",
+    "impact": "advanced",
+    "risk": "medium",
+    "requiresAdmin": true,
+    "requiresRestart": true,
+    "benefit": "Menos mantenimiento de mapas sin conexión.",
+    "caveat": "Las aplicaciones que dependen de mapas descargados perderán esta función. Su disponibilidad cambia según la versión. Solo cambia el tipo de inicio; el servicio actual no se detiene. El efecto se evalúa después de reiniciar. Si no está instalado, el ajuste no se aplica.",
+    "operation": {
+      "kind": "service",
+      "name": "MapsBroker",
+      "startType": "Disabled"
+    }
+  },
+  {
+    "id": "service-fax",
+    "title": "Desactivar servicio de fax",
+    "description": "Impide el inicio del servicio de envío y recepción de fax de Windows.",
+    "category": "cleanup",
+    "impact": "advanced",
+    "risk": "medium",
+    "requiresAdmin": true,
+    "requiresRestart": true,
+    "benefit": "Evita iniciar una función que quizá no utilizas.",
+    "caveat": "No podrás usar el fax de Windows. Si el servicio ya estaba inactivo, no se libera RAM adicional. Solo cambia el tipo de inicio; el servicio actual no se detiene. El efecto se evalúa después de reiniciar. Si no está instalado, el ajuste no se aplica.",
+    "operation": {
+      "kind": "service",
+      "name": "Fax",
+      "startType": "Disabled"
+    }
+  },
+  {
+    "id": "service-media-sharing",
+    "title": "Desactivar servidor multimedia",
+    "description": "Deshabilita el servicio de uso compartido de Windows Media Player en la red.",
+    "category": "network",
+    "impact": "advanced",
+    "risk": "medium",
+    "requiresAdmin": true,
+    "requiresRestart": true,
+    "benefit": "Evita publicar bibliotecas multimedia mediante este servicio.",
+    "caveat": "Los dispositivos DLNA no podrán acceder a esta biblioteca. No cambia la reproducción local de archivos. Solo cambia el tipo de inicio; el servicio actual no se detiene. El efecto se evalúa después de reiniciar. Si no está instalado, el ajuste no se aplica.",
+    "operation": {
+      "kind": "service",
+      "name": "WMPNetworkSvc",
+      "startType": "Disabled"
+    }
+  },
+  {
+    "id": "service-retail-demo",
+    "title": "Desactivar demostración comercial",
+    "description": "Deshabilita el servicio destinado al modo de demostración de tiendas.",
+    "category": "cleanup",
+    "impact": "advanced",
+    "risk": "medium",
+    "requiresAdmin": true,
+    "requiresRestart": true,
+    "benefit": "Evita iniciar funciones de exposición comercial.",
+    "caveat": "No usar en un equipo destinado a demostraciones. En un PC personal suele estar inactivo y el beneficio puede ser nulo. Solo cambia el tipo de inicio; el servicio actual no se detiene. El efecto se evalúa después de reiniciar. Si no está instalado, el ajuste no se aplica.",
+    "operation": {
+      "kind": "service",
+      "name": "RetailDemo",
+      "startType": "Disabled"
+    }
+  },
+  {
+    "id": "service-phone",
+    "title": "Desactivar servicio de telefonía",
+    "description": "Deshabilita el servicio de estado y capacidades de telefonía de Windows.",
+    "category": "cleanup",
+    "impact": "advanced",
+    "risk": "medium",
+    "requiresAdmin": true,
+    "requiresRestart": true,
+    "benefit": "Evita el inicio de un componente opcional de telefonía.",
+    "caveat": "Puede afectar llamadas e integración con dispositivos o aplicaciones de telefonía; no usar si dependes de ellas. Solo cambia el tipo de inicio; el servicio actual no se detiene. El efecto se evalúa después de reiniciar. Si no está instalado, el ajuste no se aplica.",
+    "operation": {
+      "kind": "service",
+      "name": "PhoneSvc",
+      "startType": "Disabled"
+    }
+  },
+  {
+    "id": "service-remote-registry",
+    "title": "Desactivar registro remoto",
+    "description": "Impide iniciar el servicio que permite administrar el registro desde otro equipo.",
+    "category": "network",
+    "impact": "advanced",
+    "risk": "medium",
+    "requiresAdmin": true,
+    "requiresRestart": true,
+    "benefit": "Reduce funciones de administración remota disponibles.",
+    "caveat": "Puede afectar herramientas de administración de una organización. No cambia el acceso local al registro. Solo cambia el tipo de inicio; el servicio actual no se detiene. El efecto se evalúa después de reiniciar. Si no está instalado, el ajuste no se aplica.",
+    "operation": {
+      "kind": "service",
+      "name": "RemoteRegistry",
+      "startType": "Disabled"
+    }
+  },
+  {
+    "id": "service-link-tracking",
+    "title": "Desactivar seguimiento de vínculos",
+    "description": "Deshabilita el seguimiento de enlaces a archivos NTFS movidos entre ubicaciones.",
+    "category": "system",
+    "impact": "advanced",
+    "risk": "medium",
+    "requiresAdmin": true,
+    "requiresRestart": true,
+    "benefit": "Reduce el trabajo de seguimiento de vínculos.",
+    "caveat": "Algunos accesos directos o vínculos OLE podrían dejar de localizar archivos después de moverlos. Solo cambia el tipo de inicio; el servicio actual no se detiene. El efecto se evalúa después de reiniciar. Si no está instalado, el ajuste no se aplica.",
+    "operation": {
+      "kind": "service",
+      "name": "TrkWks",
+      "startType": "Disabled"
+    }
+  }
+]
